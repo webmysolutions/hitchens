@@ -133,7 +133,7 @@ MG.register('dice', function (container, api) {
     rollsLbl.textContent = '🎲 ' + rollsLeft;
     rollBtn.textContent = (ru ? 'Бросить' : 'Roll') + ' (' + rollsLeft + ')';
     rollBtn.style.opacity = (rollsLeft > 0 && !over) ? '1' : '0.4';
-    for (var i = 0; i < 5; i++) dieEls[i].el.style.opacity = (rolled || turn === 0) ? '1' : '0.45';
+    for (var i = 0; i < 5; i++) dieEls[i].el.style.opacity = rolled ? '1' : '0.45';
     for (var c = 0; c < 13; c++) {
       if (used[c] != null) {
         vals[c].textContent = used[c];

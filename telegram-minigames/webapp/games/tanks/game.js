@@ -13,7 +13,7 @@ MG.register('tanks', function (container, api) {
   var pl = { fx: 0.15, x: 0, y: 0, hp: 100, ang: Math.PI * 0.25, pw: 0.6 };
   var ai = { fx: 0.85, x: 0, y: 0, hp: 100, ang: Math.PI * 0.35, pw: 0.6 };
   var proj = { on: false, x: 0, y: 0, vx: 0, vy: 0, who: 0 };
-  var aim = { on: false, sx: 0, sy: 0, dx: 0, dy: 0 };
+  var aim = { on: false, ptr: false, sx: 0, sy: 0 };
   var aiPow = 0.55, aiNoise = 0.24, aiAng = 2.1;
   var exp = { t: 0, x: 0, y: 0 };
   var flt = { t: 0, x: 0, y: 0, s: '' };
@@ -206,7 +206,7 @@ MG.register('tanks', function (container, api) {
     }
   }
 
-  function drawTank(t, col, mirror) {
+  function drawTank(t, col) {
     g.fillStyle = C.panel2;
     g.fillRect(t.x - 14, t.y - 5, 28, 5);
     g.fillStyle = col;
@@ -333,16 +333,16 @@ MG.register('tanks', function (container, api) {
   function onDown(ev) {
     if (st !== 'player' || ended) return;
     var p = pt(ev);
-    aim.on = true; aim.sx = p.x; aim.sy = p.y;
+    aim.on = true; aim.ptr = true; aim.sx = p.x; aim.sy = p.y;
     simHint(pl.ang, pl.pw);
   }
   function onMove(ev) {
-    if (!aim.on) return;
+    if (!aim.ptr) return;
     updAim(pt(ev));
   }
   function onUp(ev) {
-    if (!aim.on) return;
-    aim.on = false;
+    if (!aim.ptr) return;
+    aim.on = false; aim.ptr = false;
     if (st !== 'player') return;
     var p = pt(ev);
     var dx = p.x - aim.sx, dy = p.y - aim.sy;

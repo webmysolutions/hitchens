@@ -121,6 +121,7 @@ MG.register('defense', function (container, api) {
   var ECOLA = [hueTo(BAD, 40, 1.1, 1.1), BAD, mix(MUT, BG, 0.25), mix(GOOD, TEXTC, 0.3), hueTo(BAD, 322, 1.1, 0.95)];
   var ECOL = [css(ECOLA[0]), css(ECOLA[1]), css(ECOLA[2]), css(ECOLA[3]), css(ECOLA[4])];
   var FROSTS = css(mix(ACC, TEXTC, 0.55));
+  var PANC = hx(C.panel);
   var RANGE_F = rgba(ACC, 0.1), RANGE_S = rgba(ACC, 0.4);
   var DIM = 'rgba(0,0,0,0.45)';
 
@@ -706,7 +707,7 @@ MG.register('defense', function (container, api) {
   var pbU = { x: 0, y: 0, w: 0, h: 0 }, pbS = { x: 0, y: 0, w: 0, h: 0 }, pbY = 0;
   function panelLayout() {
     pbY = cv.H - BB - 54;
-    var w = Math.min(150, cv.W * 0.36);
+    var w = Math.min(124, cv.W * 0.33);
     pbU.x = cv.W - w * 2 - 20; pbU.y = pbY + 7; pbU.w = w; pbU.h = 40;
     pbS.x = cv.W - w - 12; pbS.y = pbY + 7; pbS.w = w; pbS.h = 40;
   }
@@ -1008,7 +1009,7 @@ MG.register('defense', function (container, api) {
     var wn = phase === 'wave' ? wave : Math.min(WAVES, done + 1);
     g.fillText((RU ? 'Волна ' : 'Wave ') + wn + '/' + WAVES, cv.W - 12, TH / 2 + 1);
     /* preview strip */
-    g.fillStyle = rgba(hx(C.panel), 0.75);
+    g.fillStyle = rgba(PANC, 0.75);
     g.fillRect(0, TH, cv.W, PS);
     var nx = (phase === 'wave' ? wave + 1 : done + 1);
     g.textAlign = 'left';
@@ -1108,7 +1109,7 @@ MG.register('defense', function (container, api) {
       g.beginPath(); g.arc(x, y, R, 0, 6.283); g.stroke();
       /* panel */
       panelLayout();
-      g.fillStyle = rgba(hx(C.panel), 0.95);
+      g.fillStyle = rgba(PANC, 0.95);
       rr(g, 6, pbY, cv.W - 12, 54, 12);
       g.fill();
       g.strokeStyle = rgba(PAN2, 1);
