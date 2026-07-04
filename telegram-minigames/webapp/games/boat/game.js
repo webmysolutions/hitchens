@@ -284,11 +284,12 @@ MG.register('boat', function (container, api) {
       if (o.t === 0) {
         g.fillStyle = ROCK;
         g.beginPath();
-        g.ellipse(o.x, oy, 17, 13, 0.3, 0, 6.283);
+        g.arc(o.x, oy, 15, 0, 6.283);
+        g.arc(o.x + 8, oy + 4, 9, 0, 6.283);
         g.fill();
         g.fillStyle = mix(ROCK, C.text, 0.3);
         g.beginPath();
-        g.ellipse(o.x - 4, oy - 4, 7, 5, 0.3, 0, 6.283);
+        g.arc(o.x - 4, oy - 5, 6, 0, 6.283);
         g.fill();
       } else if (o.t === 1) {
         g.fillStyle = LOG;
