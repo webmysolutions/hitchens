@@ -39,18 +39,21 @@ MG.register('drift', function (container, api) {
   var tex = null, texG = null;
   var mini = [], MSZ = 60;
 
-  function genUnit() {
-    var i, r, pr = 0.8, a;
+  function genCPs() {
+    var i, r, pr = 0.85, a;
     ucp.length = 0;
     for (i = 0; i < NCP; i++) {
-      r = 0.66 + Math.random() * 0.32;
-      if (r - pr > 0.17) r = pr + 0.17;
-      if (pr - r > 0.17) r = pr - 0.17;
+      r = 0.72 + Math.random() * 0.28;
+      if (r - pr > 0.14) r = pr + 0.14;
+      if (pr - r > 0.14) r = pr - 0.14;
       pr = r;
       a = i / NCP * Math.PI * 2;
       ucp.push({ x: Math.cos(a) * r, y: Math.sin(a) * r });
     }
+  }
+  function buildLine() {
     // Catmull-Rom sample
+    var i;
     upts.length = 0;
     for (i = 0; i < NCP; i++) {
       var p0 = ucp[(i + NCP - 1) % NCP], p1 = ucp[i], p2 = ucp[(i + 1) % NCP], p3 = ucp[(i + 2) % NCP];
@@ -68,6 +71,8 @@ MG.register('drift', function (container, api) {
     var i;
     halfW = Math.max(22, Math.min(40, Math.min(cv.W, cv.H) * 0.082));
     var sx = cv.W / 2 - halfW - 14, sy = cv.H / 2 - halfW - 20;
+    if (sy > sx * 1.5) sy = sx * 1.5;
+    if (sx > sy * 1.5) sx = sy * 1.5;
     var cx = cv.W / 2, cy = cv.H / 2;
     pts.length = 0;
     for (i = 0; i < N; i++) pts.push({ x: cx + upts[i].x * sx, y: cy + upts[i].y * sy });
@@ -136,9 +141,39 @@ MG.register('drift', function (container, api) {
     for (i = 0; i < SMN; i++) smoke.push({ x: 0, y: 0, vx: 0, vy: 0, life: 0 });
   })();
 
-  function reset() {
-    genUnit();
+  function minRadius() {
+    var best = 1e9, i;
+    for (i = 0; i < N; i += 2) {
+      var a = pts[(i - 5 + N) % N], b = pts[i], c = pts[(i + 5) % N];
+      var abx = b.x - a.x, aby = b.y - a.y;
+      var bcx = c.x - b.x, bcy = c.y - b.y;
+      var cax = a.x - c.x, cay = a.y - c.y;
+      var cr = Math.abs(abx * bcy - aby * bcx);
+      if (cr < 0.001) continue;
+      var r = Math.sqrt((abx * abx + aby * aby) * (bcx * bcx + bcy * bcy) * (cax * cax + cay * cay)) / (2 * cr);
+      if (r < best) best = r;
+    }
+    return best;
+  }
+
+  function genTrack() {
+    var bestCp = null, bestMr = -1, tries;
+    var need = (halfW || 32) * 7.0 / TURN * 1.3;
+    for (tries = 0; tries < 40; tries++) {
+      genCPs();
+      buildLine();
+      layout();
+      var mr = minRadius();
+      if (mr > bestMr) { bestMr = mr; bestCp = ucp.slice(); }
+      if (mr >= need) return;
+    }
+    ucp = bestCp;
+    buildLine();
     layout();
+  }
+
+  function reset() {
+    genTrack();
     maxSp = halfW * 7.0;
     car.x = pts[0].x; car.y = pts[0].y;
     car.a = Math.atan2(pts[3].y - pts[0].y, pts[3].x - pts[0].x);
