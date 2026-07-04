@@ -134,8 +134,8 @@ MG.register('defense', function (container, api) {
     { icon: '⚡', nm: RU ? 'Тесла' : 'Tesla', cost: 120, up: [100, 150], dmg: [18, 32, 55], rate: [1.0, 1.15, 1.35], rng: [2.4, 2.7, 3.0], chain: 3 }
   ];
   var EDEF = [
-    { hp: 26, spd: 2.3, bty: 8, r: 0.24 },
-    { hp: 62, spd: 1.4, bty: 12, r: 0.29 },
+    { hp: 22, spd: 2.15, bty: 8, r: 0.24 },
+    { hp: 56, spd: 1.4, bty: 12, r: 0.29 },
     { hp: 185, spd: 0.85, bty: 22, r: 0.36, sres: 0.5 },
     { hp: 78, spd: 1.15, bty: 16, r: 0.29, heal: 2 },
     { hp: 560, spd: 0.55, bty: 90, r: 0.46, boss: true }
