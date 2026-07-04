@@ -221,7 +221,7 @@ MG.register('defense', function (container, api) {
       p.x = x; p.y = y;
       p.vx = Math.cos(a) * v; p.vy = Math.sin(a) * v - sp * 0.3;
       p.T = p.life = 0.35 + Math.random() * 0.3;
-      p.col = col; p.sz = 1.5 + Math.random() * 2; p.gr = 6;
+      p.col = col; p.sz = 1.5 + Math.random() * 2; p.gr = 160;
     }
   }
   function floater(x, y, txt, col, big) {
@@ -553,7 +553,7 @@ MG.register('defense', function (container, api) {
   }
   function explode(p) {
     fxRing(p.tx, p.ty, p.spl, TCOL[1], 0);
-    burst(p.tx, p.ty, TCOL[1], 10, 3.2);
+    burst(ox + p.tx * cell, oy + p.ty * cell, TCOL[1], 10, 90);
     var R2 = p.spl * p.spl;
     for (var i = 0; i < eN; i++) {
       var e = enemies[i];
@@ -576,7 +576,7 @@ MG.register('defense', function (container, api) {
           p.tx = dx / dl * p.spd; p.ty = dy / dl * p.spd;
           if (dl < EDEF[e.type].r + 0.15) {
             hurt(e, p.dmg, false);
-            burst(e.x, e.y, ECOL[e.type], 3, 2);
+            burst(ox + e.x * cell, oy + e.y * cell, ECOL[e.type], 4, 50);
             pDel(i);
             continue;
           }
@@ -631,7 +631,7 @@ MG.register('defense', function (container, api) {
       if (e.hp <= 0) {
         var b = Math.round(EDEF[e.type].bty * (1 + 0.05 * (wave - 1)));
         gold += b; kills++;
-        burst(e.x === 0 ? 0 : ox + e.x * cell, oy + e.y * cell, ECOL[e.type], EDEF[e.type].boss ? 26 : 9, EDEF[e.type].boss ? 120 : 70);
+        burst(ox + e.x * cell, oy + e.y * cell, ECOL[e.type], EDEF[e.type].boss ? 26 : 9, EDEF[e.type].boss ? 130 : 75);
         floater(ox + e.x * cell, oy + e.y * cell - cell * 0.5, '+' + b, GOLD, false);
         if (EDEF[e.type].boss) { shake(12); api.haptic('medium'); }
         reportScore();
@@ -938,7 +938,7 @@ MG.register('defense', function (container, api) {
         g.fillStyle = C.text;
         g.beginPath(); g.arc(x, y, 2.4, 0, 6.283); g.fill();
       } else { /* cannonball: arc + ground shadow */
-        var tt = Math.min(1, p.t + alpha * 0.0001);
+        var tt = Math.min(1, p.t);
         var h = 4 * p.hm * tt * (1 - tt) * cell * 2.2;
         g.fillStyle = 'rgba(0,0,0,0.3)';
         g.beginPath(); g.ellipse(x, y, 4, 2, 0, 0, 6.283); g.fill();
