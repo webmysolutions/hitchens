@@ -108,8 +108,8 @@ MG.register('moto', function (container, api) {
     if (w.c) {
       var s = slope(w.x), il = 1 / Math.sqrt(1 + s * s);
       var tx = il, ty = s * il;
-      if (throttle && canDrive) { ax += 900 * tx; ay += 900 * ty; }
-      if (brake) { ax -= 620 * tx; ay -= 620 * ty; }
+      if (throttle && canDrive) { ax += 760 * tx; ay += 760 * ty; }
+      if (brake) { ax -= 520 * tx; ay -= 520 * ty; }
     } else if (!w0.c && !w1.c) {
       // air torque: throttle tilts back (rear down / front up), brake forward
       var tq = 0;
@@ -141,7 +141,7 @@ MG.register('moto', function (container, api) {
           var vy = w.y - w.py, vx = w.x - w.px;
           w.y = gh;
           w.py = w.y + vy * 0.35;
-          w.px = w.x - vx * (brake ? 0.9 : 0.99);
+          w.px = w.x - vx * (brake ? 0.9 : 0.985);
           w.c = true;
         } else if (it === 0) w.c = false;
       }
@@ -239,7 +239,8 @@ MG.register('moto', function (container, api) {
   }
 
   function total() {
-    return ((maxX / PXM) | 0) + flips * 50 + coins * 10;
+    var m = ((maxX - 84) / PXM) | 0;
+    return (m > 0 ? m : 0) + flips * 50 + coins * 10;
   }
 
   function drawWheel(w) {
@@ -354,7 +355,8 @@ MG.register('moto', function (container, api) {
     g.font = 'bold 10px sans-serif'; g.textAlign = 'left'; g.textBaseline = 'top';
     g.fillStyle = C.muted;
     g.fillText(RU ? 'ТОПЛИВО' : 'FUEL', 12, 28);
-    g.fillText(((maxX / PXM) | 0) + (RU ? ' м' : ' m'), 12, 42);
+    var mm = ((maxX - 84) / PXM) | 0;
+    g.fillText((mm > 0 ? mm : 0) + (RU ? ' м' : ' m'), 12, 42);
 
     // banner
     if (bannerT > 0) {
