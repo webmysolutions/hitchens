@@ -128,7 +128,7 @@ MG.register('defense', function (container, api) {
   /* ================= constants ================= */
   var COLS = 9, ROWS = 13, WAVES = 20, STEP = 1000 / 60;
   var TDEF = [
-    { icon: '🏹', nm: RU ? 'Лучник' : 'Archer', cost: 50, up: [45, 70], dmg: [8, 15, 26], rate: [2.4, 2.9, 3.5], rng: [2.2, 2.5, 2.9] },
+    { icon: '🏹', nm: RU ? 'Лучник' : 'Archer', cost: 50, up: [45, 70], dmg: [10, 18, 30], rate: [2.4, 2.9, 3.5], rng: [2.3, 2.6, 3.0] },
     { icon: '💣', nm: RU ? 'Пушка' : 'Cannon', cost: 90, up: [75, 115], dmg: [24, 44, 76], rate: [0.65, 0.75, 0.9], rng: [2.2, 2.5, 2.9], splash: 1.15 },
     { icon: '❄️', nm: RU ? 'Мороз' : 'Frost', cost: 60, up: [50, 80], dmg: [0, 0, 0], slow: [0.42, 0.52, 0.62], rate: [0.6, 0.7, 0.8], rng: [1.8, 2.1, 2.4] },
     { icon: '⚡', nm: RU ? 'Тесла' : 'Tesla', cost: 120, up: [100, 150], dmg: [18, 32, 55], rate: [1.0, 1.15, 1.35], rng: [2.4, 2.7, 3.0], chain: 3 }
