@@ -36,7 +36,7 @@ MG.register('tapper', function (container, api) {
   var mid = el('div', 'flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;position:relative;');
   root.appendChild(mid);
 
-  var big = el('div', 'position:absolute;font-size:72px;font-weight:bold;color:' + C.accent + ';opacity:0;pointer-events:none;transition:transform .3s,opacity .3s;will-change:transform,opacity;', '');
+  var big = el('div', 'position:absolute;left:0;right:0;top:0;text-align:center;font-size:64px;font-weight:bold;color:' + C.accent + ';opacity:0;pointer-events:none;will-change:transform,opacity;', '');
   mid.appendChild(big);
 
   var btn = el('div', 'position:relative;width:min(65vw,260px);height:min(65vw,260px);border-radius:50%;background:' + C.accent + ';color:' + C.bg + ';display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .06s;will-change:transform;overflow:hidden;box-shadow:0 6px 0 rgba(0,0,0,.25);');
@@ -84,9 +84,9 @@ MG.register('tapper', function (container, api) {
     big.style.transform = 'scale(1.6)';
     big.style.opacity = '1';
     void big.offsetWidth;
-    big.style.transition = 'transform .3s,opacity .6s';
+    big.style.transition = 'transform .3s,opacity .8s 1.6s';
     big.style.transform = 'scale(1)';
-    big.style.opacity = LOW ? '1' : '0.9';
+    big.style.opacity = '0';
   }
 
   // ---------- flow ----------
