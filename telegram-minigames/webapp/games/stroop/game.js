@@ -93,7 +93,6 @@ MG.register('stroop', function (container, api) {
     wordEl.style.color = INK[ink].c;
     cardLimit = Math.max(1200, 3000 - cards * 60);
     cardRemain = cardLimit;
-    card.style.borderColor = 'transparent';
     if (!LOW) { // flip-in
       card.style.transition = 'none';
       card.style.transform = 'rotateY(88deg)';
