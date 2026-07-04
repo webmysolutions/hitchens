@@ -88,7 +88,8 @@ function genIsland(rand) {
     largest();
     land = count();
     guard = 0;
-    while (land < 64 && guard++ < 300) { /* grow coastline back */
+    var target = 62 + ((rand() * 15) | 0); /* varied island sizes, 62..76 */
+    while (land < target && guard++ < 300) { /* grow coastline outward */
       var c2 = [], c1 = [];
       for (i = 0; i < N; i++) if (!ter[i]) {
         var ln = landN4(i);
@@ -297,6 +298,7 @@ if (typeof MG !== 'undefined') MG.register('kingdom', function (container, api) 
   function tryLoad() {
     var s = api.load();
     if (!s || s.v !== 2 || !s.ter || s.ter.length !== N || !s.bld || s.bld.length !== N ||
+        !s.hs || s.hs.length !== N || !s.tpl || s.tpl.length !== N ||
         typeof s.tn !== 'number' || s.tn >= TURNS || !s.hd || s.hd.length !== 2) return false;
     ter = s.ter; hs = s.hs; bld = s.bld; tpl = s.tpl;
     score = Math.max(0, s.sc | 0); turn = s.tn; hand = s.hd; sel = s.se ? 1 : 0;

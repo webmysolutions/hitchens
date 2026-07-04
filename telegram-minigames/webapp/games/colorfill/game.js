@@ -26,7 +26,7 @@ MG.register('colorfill', function (container, api) {
 
   var ROUNDS = 8;
   var SIZES = [10, 10, 11, 11, 12, 12, 13, 14];
-  var round, size, grid, moves, limit, total, wins, state; // state: 'play' | 'between' | 'done'
+  var round, size, grid, moves, limit, total, wins, state, pendingEnd; // state: 'play' | 'between' | 'done'
   var anim = [];         // [{i, old, at}] staggered recolor
   var banner = null;     // {text, color, until}
   var raf = 0, paused = false, timers = [];
@@ -91,12 +91,14 @@ MG.register('colorfill', function (container, api) {
     limit = greedySolve(grid, size) + 4;
     anim = [];
     state = 'play';
+    pendingEnd = false;
     layout();
   }
 
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
 
   function endRound(won) {
+    if (state !== 'play') return;
     state = 'between';
     var pts = 0;
     if (won) {
@@ -120,7 +122,7 @@ MG.register('colorfill', function (container, api) {
   }
 
   function pick(col) {
-    if (state !== 'play' || col === grid[0]) return;
+    if (state !== 'play' || pendingEnd || col === grid[0]) return;
     moves++;
     var oldCol = grid[0];
     var own = region(grid, size);
@@ -150,8 +152,8 @@ MG.register('colorfill', function (container, api) {
     }
     api.haptic('light');
     var ownedNow = region(grid, size).length;
-    if (ownedNow === size * size) later(function () { endRound(true); }, api.lowEnd ? 120 : 420);
-    else if (moves >= limit) later(function () { endRound(false); }, api.lowEnd ? 120 : 420);
+    if (ownedNow === size * size) { pendingEnd = true; later(function () { endRound(true); }, api.lowEnd ? 120 : 420); }
+    else if (moves >= limit) { pendingEnd = true; later(function () { endRound(false); }, api.lowEnd ? 120 : 420); }
   }
 
   /* input: taps on color buttons (and keys 1-6 for desktop) */

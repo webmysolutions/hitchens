@@ -142,8 +142,7 @@ MG.register('zigzag', function (container, api) {
         api.haptic('light');
       }
     }
-    // progress
-    var sum = -by / TH * 0.5 * 2; // = i+j fractional
+    // progress (i+j fractional = -by/TH)
     var d = ((-by / TH) | 0) - 2;
     if (d > dist) dist = d;
     if (dist >= nextMile) { api.haptic('medium'); nextMile += 100; }

@@ -104,8 +104,10 @@ MG.register('untangle', function (container, api) {
   }
 
   /* normalized <-> pixel coords */
-  function px(v) { return MARGIN + v.x * (cv.W - MARGIN * 2); }
-  function py(v) { return TOP + MARGIN + v.y * (cv.H - TOP - MARGIN * 2); }
+  function sw() { return Math.max(1, cv.W - MARGIN * 2); }
+  function sh() { return Math.max(1, cv.H - TOP - MARGIN * 2); }
+  function px(v) { return MARGIN + v.x * sw(); }
+  function py(v) { return TOP + MARGIN + v.y * sh(); }
 
   function solve() {
     var sec = Math.floor((performance.now() - t0) / 1000);
@@ -145,8 +147,8 @@ MG.register('untangle', function (container, api) {
     if (dragIdx < 0) return;
     var p = pt(e);
     var v = verts[dragIdx];
-    v.x = Math.max(0, Math.min(1, (p.x - MARGIN) / (cv.W - MARGIN * 2)));
-    v.y = Math.max(0, Math.min(1, (p.y - TOP - MARGIN) / (cv.H - TOP - MARGIN * 2)));
+    v.x = Math.max(0, Math.min(1, (p.x - MARGIN) / sw()));
+    v.y = Math.max(0, Math.min(1, (p.y - TOP - MARGIN) / sh()));
     countCross();
     if (e.cancelable) e.preventDefault();
   }
