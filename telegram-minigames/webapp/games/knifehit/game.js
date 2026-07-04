@@ -215,7 +215,7 @@ MG.register('knifehit', function (container, api) {
     last = ts;
     for (var i = 0; i < MAXP; i++) {
       var p = parts[i];
-      if (p.life > 0) { p.life -= dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 0.0007 * dt * dt; }
+      if (p.life > 0) { p.life -= dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 0.0006 * dt; }
     }
     if (started && !over) {
       t += dt;

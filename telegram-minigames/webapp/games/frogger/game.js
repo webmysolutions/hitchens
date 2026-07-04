@@ -13,7 +13,6 @@ MG.register('frogger', function (container, api) {
   var deadT = 0, deadEmo = '💥', frogTime = 30000, bannerT = 0;
   var homes = [false, false, false, false, false];
   var lanes = [];
-  var CARCOL = [];
 
   function layout() {
     cell = Math.floor(Math.min(cv.W / COLS, cv.H / ROWS));
@@ -251,7 +250,7 @@ MG.register('frogger', function (container, api) {
     g.textAlign = 'right';
     g.fillText(api.t('level') + ' ' + level, ox + cell * COLS - 2, oy - cell * 0.4 < 8 ? 10 : oy - cell * 0.35);
     g.textAlign = 'center';
-    var ty = rowY(13) + 3;
+    var ty = Math.min(rowY(13) + 3, cv.H - 6);
     g.fillStyle = C.panel2; g.fillRect(ox, ty, cell * COLS, 5);
     g.fillStyle = frogTime < 8000 ? C.bad : C.good;
     g.fillRect(ox, ty, cell * COLS * Math.max(0, frogTime) / 30000, 5);
