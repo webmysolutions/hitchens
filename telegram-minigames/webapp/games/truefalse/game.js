@@ -195,10 +195,10 @@ MG.register('truefalse', function (container, api) {
   var mid = document.createElement('div');
   mid.style.cssText = 'flex:1;display:flex;align-items:center;min-height:0;overflow:hidden;';
   var card = document.createElement('div');
-  var TR = 'transition:transform .2s ease,opacity .2s ease;';
+  var TR = 'transform .2s ease,opacity .2s ease';
   card.style.cssText = 'width:100%;box-sizing:border-box;background:' + C.panel + ';color:' + C.text + ';' +
     'border:2px solid ' + C.panel2 + ';border-radius:16px;padding:22px 18px;font-weight:600;font-size:20px;' +
-    'line-height:1.35;text-align:center;user-select:none;' + (low ? '' : TR);
+    'line-height:1.35;text-align:center;user-select:none;' + (low ? '' : 'transition:' + TR + ';');
   var stmt = document.createElement('div');
   var verdict = document.createElement('div');
   verdict.style.cssText = 'min-height:22px;margin-top:12px;font-weight:800;font-size:16px;';
@@ -217,11 +217,10 @@ MG.register('truefalse', function (container, api) {
     b.style.cssText = 'flex:1;padding:16px 0;border-radius:14px;text-align:center;font-weight:800;font-size:30px;' +
       'background:' + C.panel + ';border:2px solid ' + col + ';color:' + col + ';' +
       'touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;';
+    b.textContent = sym;
     return b;
   }
   var btnF = mkBtn('✖', C.bad), btnT = mkBtn('✔', C.good);
-  btnF.textContent = '✖';
-  btnT.textContent = '✔';
   btnF.addEventListener('pointerdown', function (e) { e.preventDefault(); answer(false); });
   btnT.addEventListener('pointerdown', function (e) { e.preventDefault(); answer(true); });
   row.appendChild(btnF);
@@ -261,7 +260,7 @@ MG.register('truefalse', function (container, api) {
     card.style.opacity = '0';
     showCard();
     void card.offsetWidth; /* reflow */
-    card.style.transition = TR.slice(11, TR.length - 1);
+    card.style.transition = TR;
     card.style.transform = 'translateX(0)';
     card.style.opacity = '1';
   }

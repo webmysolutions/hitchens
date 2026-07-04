@@ -113,8 +113,8 @@ MG.register('moto', function (container, api) {
     } else if (!w0.c && !w1.c) {
       // air torque: throttle tilts back (rear down / front up), brake forward
       var tq = 0;
-      if (throttle && canDrive) tq = rear ? 520 : -520;
-      else if (brake) tq = rear ? -520 : 520;
+      if (throttle && canDrive) tq = rear ? 580 : -580;
+      else if (brake) tq = rear ? -580 : 580;
       ay += tq;
     }
     var nx = w.x + (w.x - w.px) * 0.998 + ax * dt2;

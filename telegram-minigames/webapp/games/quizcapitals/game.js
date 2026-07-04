@@ -180,7 +180,7 @@ MG.register('quizcapitals', function (container, api) {
     shuffle(pool);
     opts = shuffle([curIdx, pool[0], pool[1], pool[2]]);
     if (dir === 0) {
-      label.textContent = ru ? 'Столица этой страны?' : 'What is the capital of';
+      label.textContent = ru ? 'Столица этой страны?' : 'What is the capital of…';
       bigEl.textContent = ru ? e[1] : e[0];
     } else {
       label.textContent = ru ? 'Это столица какой страны?' : 'This city is the capital of…';
