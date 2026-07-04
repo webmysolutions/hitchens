@@ -1,6 +1,6 @@
 /* Service worker: cache-first for static shell and games (weak networks),
    network-only for API. Bump VERSION to invalidate. */
-var VERSION = 'mg-v1';
+var VERSION = 'mg-v2';
 var CORE = [
   './', 'index.html', 'styles.css', 'app.js', 'mg.js',
   'i18n/ru.json', 'i18n/en.json', 'games/catalog.json'

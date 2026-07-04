@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  window.MG_VERSION = '1';
+  window.MG_VERSION = '2';
   var tg = window.Telegram && window.Telegram.WebApp;
   var API = ''; // same origin
 
