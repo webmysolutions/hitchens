@@ -43,9 +43,9 @@ MG.register('drift', function (container, api) {
     var i, r, pr = 0.8, a;
     ucp.length = 0;
     for (i = 0; i < NCP; i++) {
-      r = 0.6 + Math.random() * 0.38;
-      if (r - pr > 0.2) r = pr + 0.2;
-      if (pr - r > 0.2) r = pr - 0.2;
+      r = 0.66 + Math.random() * 0.32;
+      if (r - pr > 0.17) r = pr + 0.17;
+      if (pr - r > 0.17) r = pr - 0.17;
       pr = r;
       a = i / NCP * Math.PI * 2;
       ucp.push({ x: Math.cos(a) * r, y: Math.sin(a) * r });
@@ -122,7 +122,7 @@ MG.register('drift', function (container, api) {
   var hold = false, started = false, crashed = false, paused = false;
   var score = 0, shown = -1, driftPts = 0, laps = 0, lapAcc = 0;
   var driftT = 0, grace = 0, combo = 1, grassT = 0, shake = 0;
-  var ACC = 240, TURN = 2.7, maxSp = 300;
+  var ACC = 240, TURN = 3.3, maxSp = 300;
   var raf = 0, last = 0, accum = 0, STEP = 1 / 60, frame = 0;
 
   // pools
@@ -139,7 +139,7 @@ MG.register('drift', function (container, api) {
   function reset() {
     genUnit();
     layout();
-    maxSp = halfW * 7.6;
+    maxSp = halfW * 7.0;
     car.x = pts[0].x; car.y = pts[0].y;
     car.a = Math.atan2(pts[3].y - pts[0].y, pts[3].x - pts[0].x);
     car.vx = 0; car.vy = 0; car.idx = 0;
@@ -157,7 +157,7 @@ MG.register('drift', function (container, api) {
     var oldW = tex ? tex.width : cv.W, oldH = tex ? tex.height : cv.H;
     layout();
     if (oldW && oldH) { car.x = ux / oldW * cv.W; car.y = uy / oldH * cv.H; }
-    maxSp = halfW * 7.6;
+    maxSp = halfW * 7.0;
   };
 
   function nearest() {
@@ -199,7 +199,7 @@ MG.register('drift', function (container, api) {
     var lat = car.vx * px2 + car.vy * py2;
     if (fwd > maxSp) fwd = maxSp;
     fwd *= 0.996;
-    lat *= hold ? 0.968 : 0.86;
+    lat *= hold ? 0.955 : 0.86;
     car.vx = fx * fwd + px2 * lat;
     car.vy = fy * fwd + py2 * lat;
 
