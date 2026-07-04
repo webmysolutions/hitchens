@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#12141a">
+<title>Mini Games</title>
+<link rel="stylesheet" href="styles.css">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+<div id="app">
+  <!-- Catalog screen -->
+  <div id="screen-catalog">
+    <header class="topbar">
+      <div class="brand"><span class="brand-icon">🎮</span><span data-t="app_title">Mini Games</span></div>
+      <div class="topbar-actions">
+        <button id="btn-lang" class="icon-btn" aria-label="Language">🌐</button>
+      </div>
+    </header>
+    <div id="ad-top" class="ad-slot" hidden></div>
+    <div class="search-row">
+      <input id="search" type="search" autocomplete="off" placeholder="">
+    </div>
+    <nav id="cats" class="cats"></nav>
+    <main id="grid" class="grid"></main>
+    <div id="ad-bottom" class="ad-slot" hidden></div>
+    <footer class="footer" id="footer-note"></footer>
+  </div>
+
+  <!-- Game screen -->
+  <div id="screen-game" hidden>
+    <header class="gamebar">
+      <button id="btn-back" class="icon-btn" aria-label="Back">←</button>
+      <div class="gamebar-title" id="game-title"></div>
+      <div class="gamebar-score"><span data-t="score">Score</span>: <b id="live-score">0</b></div>
+    </header>
+    <div id="game-container"></div>
+  </div>
+
+  <!-- Game over modal -->
+  <div id="modal-over" class="modal" hidden>
+    <div class="modal-card">
+      <div class="over-emoji" id="over-emoji">🏁</div>
+      <h2 id="over-title" data-t="game_over">Game over</h2>
+      <div class="over-score"><span data-t="score">Score</span>: <b id="over-score">0</b></div>
+      <div class="over-best"><span data-t="best">Best</span>: <b id="over-best">0</b></div>
+      <div id="over-record" class="over-record" hidden data-t="new_record">New record!</div>
+      <div id="ad-gameover" class="ad-slot" hidden></div>
+      <div class="modal-actions">
+        <button id="btn-restart" class="btn btn-primary" data-t="restart">Restart</button>
+        <button id="btn-exit" class="btn" data-t="to_menu">Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Language modal -->
+  <div id="modal-lang" class="modal" hidden>
+    <div class="modal-card">
+      <h2 data-t="choose_lang">Language</h2>
+      <div id="lang-list" class="lang-list"></div>
+    </div>
+  </div>
+</div>
+<script src="mg.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

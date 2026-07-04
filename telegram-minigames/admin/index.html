@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Mini Games — Админка</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<!-- Login -->
+<div id="login-screen" class="login-wrap" hidden>
+  <form id="login-form" class="login-card">
+    <div class="login-logo">🎮</div>
+    <h1>Mini Games — Админка</h1>
+    <input id="login-pass" type="password" placeholder="Пароль" autocomplete="current-password" required>
+    <button class="btn btn-primary" type="submit">Войти</button>
+    <div id="login-error" class="err" hidden>Неверный пароль</div>
+  </form>
+</div>
+
+<!-- App -->
+<div id="app" hidden>
+  <aside class="sidebar">
+    <div class="side-brand">🎮 Mini Games</div>
+    <nav id="nav">
+      <button data-view="dashboard" class="nav-btn active">📊 Дашборд</button>
+      <button data-view="games" class="nav-btn">🕹️ Игры</button>
+      <button data-view="stats" class="nav-btn">📈 Статистика</button>
+      <button data-view="banners" class="nav-btn">🖼️ Баннеры</button>
+      <button data-view="adsense" class="nav-btn">💵 AdSense</button>
+      <button data-view="bot" class="nav-btn">🤖 Бот</button>
+      <button data-view="users" class="nav-btn">👥 Игроки</button>
+      <button data-view="settings" class="nav-btn">⚙️ Настройки</button>
+    </nav>
+    <button id="btn-logout" class="nav-btn logout">🚪 Выйти</button>
+  </aside>
+  <main id="view" class="content"></main>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
