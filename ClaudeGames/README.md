@@ -1,4 +1,4 @@
-# 🎮 Telegram Mini Games Platform
+# 🎮 ClaudeGames — Telegram Mini Games Platform
 
 Сборник из 106 мини-игр как Telegram Mini App + админ-панель + Telegram-бот.
 Оптимизировано для слабых телефонов и медленного интернета (целевая аудитория —
@@ -7,14 +7,14 @@
 ## Что внутри
 
 ```
-telegram-minigames/
+ClaudeGames/
 ├── webapp/          # Мини-приложение (каталог + игры) — чистый JS, без фреймворков
 │   ├── index.html   # Оболочка: каталог, поиск, категории, экран игры
 │   ├── app.js       # Логика оболочки: i18n, загрузка игр, статистика, реклама
 │   ├── mg.js        # SDK игр (canvas, свайпы, счёт, сохранения, хаптика)
 │   ├── sw.js        # Service worker: офлайн-кэш после первой загрузки
 │   ├── i18n/        # Переводы (ru, en — легко добавить новые JSON-файлом)
-│   └── games/       # 33 игры, каждая — один файл ≤25 КБ, грузится по требованию
+│   └── games/       # 106 игр, каждая — один файл game.js, грузится по требованию
 ├── server/          # Node.js сервер: API, SQLite, Telegram-бот
 ├── admin/           # Админ-панель (/admin)
 └── docs/GAME_API.md # Контракт для добавления новых игр
@@ -53,7 +53,7 @@ telegram-minigames/
 ## Запуск
 
 ```bash
-cd telegram-minigames
+cd ClaudeGames
 npm install
 cp .env.example .env   # заполнить по желанию — работает и без этого
 npm start

@@ -18,8 +18,9 @@
 
 **Где код:** репозиторий `webmysolutions/hitchens`, ветка
 `claude/telegram-minigames-app-uzfypa`, всё лежит в папке
-**`telegram-minigames/`** в корне репозитория. Остальное содержимое репозитория
+**`ClaudeGames/`** в корне репозитория. Остальное содержимое репозитория
 (Jekyll-тема Hitchens) к проекту отношения не имеет — не трогать.
+На локальной машине владельца проект живёт в `~/ClaudeGames` (`/Users/ihor/ClaudeGames`).
 
 **Статус:** все 106 игр реализованы; каждая проходила `node --check` и
 Playwright-смоук-тест (загрузка в Chromium 390×780, тап + клавиши, ноль
@@ -34,7 +35,7 @@ Playwright-смоук-тест (загрузка в Chromium 390×780, тап + 
 ## 2. Структура каталогов
 
 ```
-telegram-minigames/
+ClaudeGames/
 ├── package.json           # deps: express, better-sqlite3; npm start
 ├── .env.example           # PORT, BOT_TOKEN, WEBAPP_URL, ADMIN_PASSWORD, ADSENSE_CLIENT, DB_PATH
 ├── .gitignore             # node_modules/, data/, .env
@@ -129,7 +130,7 @@ dungeon, atc, rhythm.
 
 ## 4. Сервер и БД
 
-Запуск: `cd telegram-minigames && npm install && npm start` → порт 3000
+Запуск: `cd ClaudeGames && npm install && npm start` → порт 3000
 (приложение `/`, админка `/admin`, пароль по умолчанию `admin`).
 
 **SQLite** (файл `data/minigames.db`, создаётся автоматически; WAL). Таблицы

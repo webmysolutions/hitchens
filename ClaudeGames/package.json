@@ -1,7 +1,7 @@
 {
-  "name": "telegram-minigames",
+  "name": "claudegames",
   "version": "1.0.0",
-  "description": "Telegram Mini App: a collection of lightweight browser mini-games with admin panel, stats, bot and ads management",
+  "description": "ClaudeGames — Telegram Mini App: 106 lightweight browser mini-games with admin panel, stats, bot and ads management",
   "private": true,
   "main": "server/index.js",
   "scripts": {
