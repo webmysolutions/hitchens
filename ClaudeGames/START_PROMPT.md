@@ -16,30 +16,57 @@
 - Локально проект должен лежать в `~/ClaudeGames` (`/Users/ihor/ClaudeGames`).
 
 Проверь: если ты уже находишься в папке с файлами `AGENTS.md`, `webapp/`,
-`server/` — код на месте, переходи к разделу 1. Если папка пустая — достань код:
+`server/` — код на месте, переходи к разделу 1. Если папка пустая — достань код
+одним из способов ниже (репозиторий приватный, нужен доступ к GitHub).
 
+**Способ 1 — машина уже авторизована в GitHub (самый частый случай).**
+Если на этом компьютере уже настроен доступ к GitHub (через `gh auth login`,
+SSH-ключ или сохранённые креды git) — просто клонируй, доступ подхватится сам:
 ```bash
-# вариант А: склонировать во временную папку и скопировать проект к себе
 cd /tmp && rm -rf hitchens-tmp
 git clone -b claude/telegram-minigames-app-uzfypa \
   https://github.com/webmysolutions/hitchens.git hitchens-tmp
 cp -R /tmp/hitchens-tmp/ClaudeGames/. ~/ClaudeGames/
-cd ~/ClaudeGames && ls        # AGENTS.md, CLAUDE.md, webapp, server, admin, docs
+cd ~/ClaudeGames && ls        # AGENTS.md, webapp, server, admin, docs
+```
+Проверить, авторизован ли уже: `gh auth status` или `ssh -T git@github.com`.
 
-# вариант Б: работать прямо в клоне репозитория
+**Способ 2 — по SSH** (если к аккаунту привязан SSH-ключ):
+```bash
 git clone -b claude/telegram-minigames-app-uzfypa \
-  https://github.com/webmysolutions/hitchens.git
+  git@github.com:webmysolutions/hitchens.git
 cd hitchens/ClaudeGames
 ```
+
+**Способ 3 — по HTTPS с персональным токеном (PAT).**
+Владелец подставит сюда свой токен вместо `<GITHUB_TOKEN>` (НЕ коммить его,
+храни только в этом промпте/локально). Токен создаётся на
+github.com → Settings → Developer settings → Personal access tokens → Fine-grained
+или Tokens (classic) со скоупом `repo`.
+```bash
+git clone -b claude/telegram-minigames-app-uzfypa \
+  https://<GITHUB_TOKEN>@github.com/webmysolutions/hitchens.git
+cd hitchens/ClaudeGames
+```
+
+> ДАННЫЕ ДОСТУПА (заполняет владелец перед передачей агенту):
+> - Репозиторий: `webmysolutions/hitchens` (private)
+> - Ветка: `claude/telegram-minigames-app-uzfypa`
+> - Способ авторизации: `[ gh / SSH / PAT ]` — вписать нужное
+> - Токен (если PAT): `<GITHUB_TOKEN>` ← вставить реальный, не коммитить
+> - (SSH) публичный ключ уже добавлен в аккаунт: да/нет
+
+Если доступа нет вообще — попроси у владельца токен, приглашение в репозиторий
+(collaborator) или архив папки `ClaudeGames/`.
 
 Внутри `ClaudeGames/` уже лежат более подробные документы — прочитай их после
 этого промпта: **`AGENTS.md`** (брифинг), **`docs/HANDOVER.md`** (полная
 техпередача: API, БД, реклама, нюансы), **`docs/GAME_API.md`** (контракт игр).
 
-Git-доступ: если у тебя нет прав на приватный репозиторий — попроси у владельца
-доступ или архив папки. Разработку веди в ветке
-`claude/telegram-minigames-app-uzfypa`, коммить осмысленно, пушь (иначе работа
-потеряется). Остальное в репозитории `hitchens` (Jekyll-тема) НЕ трогай.
+Разработку веди в ветке `claude/telegram-minigames-app-uzfypa`, коммить
+осмысленно, пушь (иначе работа потеряется). Остальное в репозитории `hitchens`
+(Jekyll-тема) НЕ трогай. Реальный токен в коммиты не попадать — он только для
+клонирования.
 
 ---
 
